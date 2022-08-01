@@ -46,7 +46,7 @@ bindsym $mod+Return exec rxvt-unicode
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run -b -fn 'Noto Sans 8'
+bindsym $mod+d exec --no-startup-id dmenu_run -b -fn 'Noto Sans 8' -nb 'black'
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -179,8 +179,8 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-	font pango:Noto Sans 8
         status_command i3status -c ~/.config/i3status/config
+	font pango:Noto Sans 8
 }
 
 # autostart
@@ -199,7 +199,7 @@ bindsym $mod+Shift+g gaps inner all set 6; gaps outer all set 2
 bindsym $mod+Shift+n gaps inner all set 0; gaps outer all set 0
 
 # Only enable gaps on a workspace when there is at least one container
-smart_gaps off
+smart_gaps on
 
 # Activate smart borders (always)
 #smart_borders on

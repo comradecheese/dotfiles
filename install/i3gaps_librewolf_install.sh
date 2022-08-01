@@ -15,5 +15,18 @@ meson --prefix /usr/local
 ninja
 sudo ninja install
 
-touch .xinitrc
-echo "exec i3" > .xinitrc
+echo "Removing i3-gaps repo..."
+cd ../..
+rm -rfv i3-gaps
+
+echo "Initialising .xinitrc..."
+touch ~/.xinitrc
+echo "exec i3" > ~/.xinitrc
+
+echo "Installing librewolf..."
+wget -O- https://deb.librewolf.net/keyring.gpg | sudo gpg --dearmor -o /usr/share/keyrings/librewolf.gpg
+sudo cat librewolfsource >> /etc/apt/sources.list.d/librewolf.sources
+sudo apt update -y && sudo apt upgrade -y
+sudo apt install librewolf -y
+
+echo "Finished!"

@@ -11,10 +11,10 @@ git clone https://github.com/Airblader/i3 i3-gaps
 echo "Building i3-gaps..."
 cd i3-gaps
 mkdir -p build && cd build
-meson --prefix /usr/local &
-ninja
+sudo meson --prefix /usr/local
+sudo ninja
+read -p "Press any key to continue..." -n1 -s
 sudo ninja install
-wait
 
 echo "Removing i3-gaps repo..."
 cd ../..

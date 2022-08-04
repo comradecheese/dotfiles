@@ -20,9 +20,13 @@ cd ../..
 rm -rfv i3-gaps
 
 echo "Installing librewolf..."
-wget -O- https://deb.librewolf.net/keyring.gpg | sudo gpg --dearmor -o /usr/share/keyrings/librewolf.gpg
-sudo cat librewolfsource >> /etc/apt/sources.list.d/librewolf.sources
-sudo apt update -y && sudo apt upgrade -y
-sudo apt install librewolf -y
+# https://librewolf.net/installation/debian/
+distro=$(if echo " bullseye focal impish jammy uma una " | grep -q " $(lsb_release -sc) "; then echo $(lsb_release -sc); else echo focal; fi)
 
-echo "Finished!"
+wget -O- https://deb.librewolf.net/keyring.gpg | sudo gpg --dearmor -o /usr/share/keyrings/librewolf.gpg
+
+sudo echo -e "Types: deb\nURIs: https://deb.librewolf.net\nSuites: $distro\nComponents: main\nArchitectures: amd64\nSigned-By: /usr/share/keyrings/librewolf.gpg" > /etc/apt/sources.list.d/librewolf.sources
+
+sudo apt update -y
+
+sudo apt install librewolf -y

@@ -1,25 +1,33 @@
 #! /usr/bin/bash
-echo "Updating system..."
+
+banner()
+{
+  echo "+------------------------------------------+"
+  printf "| %-40s |\n" "`date`"
+  echo "|                                          |"
+  printf "|`tput bold` %-40s `tput sgr0`|\n" "$@"
+  echo "+------------------------------------------+"
+}
+
+banner "Comrade Cheese's Desktop Environment Setup!"
 sudo apt update -y && sudo apt upgrade -y
 
-echo "Installing i3-gaps dependencies and other software..."
-sudo apt install meson dh-autoreconf libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev xcb libxcb1-dev libxcb-icccm4-dev libyajl-dev libev-dev libxcb-xkb-dev libxcb-cursor-dev libxkbcommon-dev libxcb-xinerama0-dev libxkbcommon-x11-dev libstartup-notification0-dev libxcb-randr0-dev libxcb-xrm0 libxcb-xrm-dev libxcb-shape0 libxcb-shape0-dev xorg xinit xsettingsd build-essential suckless-tools i3status i3lock fonts-mplus rxvt-unicode xsel lxappearance arc-theme compton feh -y
+banner "Installing required packages"
+sudo apt install meson dh-autoreconf libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev xcb libxcb1-dev libxcb-icccm4-dev libyajl-dev libev-dev libxcb-xkb-dev libxcb-cursor-dev libxkbcommon-dev libxcb-xinerama0-dev libxkbcommon-x11-dev libstartup-notification0-dev libxcb-randr0-dev libxcb-xrm0 libxcb-xrm-dev libxcb-shape0 libxcb-shape0-dev xorg xinit xsettingsd build-essential suckless-tools i3status i3lock-fancy fonts-mplus rxvt-unicode xsel lxappearance arc-theme compton feh neofetch scrot -y
 
-echo "Cloning i3-gaps repo..."
+banner "Installing i3-gaps"
 git clone https://github.com/Airblader/i3 i3-gaps
 
-echo "Building i3-gaps..."
 cd i3-gaps
 mkdir -p build && cd build
 sudo meson --prefix /usr/local
 sudo ninja
 sudo ninja install
 
-echo "Removing i3-gaps repo..."
 cd ../..
 rm -rfv i3-gaps
 
-echo "Installing librewolf..."
+banner "Installing librewolf"
 # https://librewolf.net/installation/debian/
 distro=$(if echo " bullseye focal impish jammy uma una " | grep -q " $(lsb_release -sc) "; then echo $(lsb_release -sc); else echo focal; fi)
 
@@ -30,3 +38,5 @@ sudo echo -e "Types: deb\nURIs: https://deb.librewolf.net\nSuites: $distro\nComp
 sudo apt update -y
 
 sudo apt install librewolf -y
+
+banner "Finished!"

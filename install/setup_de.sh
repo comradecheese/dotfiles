@@ -13,7 +13,7 @@ banner "Desktop Environment Setup!"
 sudo apt update -y && sudo apt upgrade -y
 
 banner "Installing required packages"
-sudo apt install meson dh-autoreconf libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev xcb libxcb1-dev libxcb-icccm4-dev libyajl-dev libev-dev libxcb-xkb-dev libxcb-cursor-dev libxkbcommon-dev libxcb-xinerama0-dev libxkbcommon-x11-dev libstartup-notification0-dev libxcb-randr0-dev libxcb-xrm0 libxcb-xrm-dev libxcb-shape0 libxcb-shape0-dev xorg xinit xsettingsd build-essential suckless-tools i3status i3lock-fancy fonts-mplus rxvt-unicode xsel lxappearance arc-theme compton feh neofetch scrot figlet htop chkrootkit ufw -y
+sudo apt install meson dh-autoreconf libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev xcb libxcb1-dev libxcb-icccm4-dev libyajl-dev libev-dev libxcb-xkb-dev libxcb-cursor-dev libxkbcommon-dev libxcb-xinerama0-dev libxkbcommon-x11-dev libstartup-notification0-dev libxcb-randr0-dev libxcb-xrm0 libxcb-xrm-dev libxcb-shape0 libxcb-shape0-dev xorg xinit xsettingsd build-essential suckless-tools i3status i3lock-fancy fonts-mplus rxvt-unicode xsel lxappearance arc-theme compton feh neofetch scrot figlet htop chkrootkit ufw network-manager firmware-linux-nonfree firmware-iwlwifi firmware-intel-sound firmware-linux pavucontrol -y
 
 banner "Installing i3-gaps"
 git clone https://github.com/Airblader/i3 i3-gaps
